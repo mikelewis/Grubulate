@@ -12,16 +12,12 @@ gem 'mysql'
 group :test, :development do
   gem 'rspec'
   gem 'rspec-rails'
-end
-
-group :cucumber do
-  gem 'capybara'
+  gem 'cucumber-rails'
+  gem 'webrat'
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
   gem 'database_cleaner'
-  gem 'cucumber'
-  gem 'spork'
-  gem 'launchy'
 end
-
 
 
 # Use unicorn as the web server
