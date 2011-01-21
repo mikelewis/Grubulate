@@ -22,6 +22,7 @@ group :test, :development do
   gem 'database_cleaner'
   gem 'hpricot'
   gem 'ruby_parser'
+  gem 'seed-fu'
 end
 
 
