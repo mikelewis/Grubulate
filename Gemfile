@@ -10,6 +10,7 @@ gem 'rails', '3.0.1'
 gem 'mysql'
 gem 'haml'
 gem 'haml-rails'
+gem 'devise'
 
 group :test, :development do
   gem 'rspec'
@@ -20,6 +21,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'hpricot'
+  gem 'ruby_parser'
 end
 
 
