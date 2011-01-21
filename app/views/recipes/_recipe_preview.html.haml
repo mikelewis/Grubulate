@@ -1,0 +1,9 @@
+%div
+  %strong= link_to recipe.title, recipe
+  %br
+  Difficulty: #{recipe.difficulty}
+  %br
+  Short Description: #{recipe.short_desc}
+  %i
+    by: #{recipe.profile.username}
+

@@ -57,6 +57,10 @@ namespace :deploy do
     run "cd #{release_path} && sudo bundle install"
   end
 
+  task :seed_db, :roles => :app do
+    run "cd #{release_path} && RAILS_ENV=\"production\" rake db:seed_fu FILTER=production"
+  end
+
   desc "Update the crontab file"
   task :update_crontab, :roles => :app do
     run "cd #{release_path} && bundle exec whenever --update-crontab #{application}"
@@ -89,4 +93,5 @@ namespace :deploy do
   end
 end
 after 'deploy:update_code', "deploy:bundle_install", 'deploy:sync_config', 'deploy:restart'
+after "deploy:migrations", "deploy:seed_db" # I think, we'll see
 

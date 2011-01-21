@@ -14,6 +14,8 @@ gem 'devise'
 gem 'friendly_id', "~> 3.2"
 gem 'paperclip', "~>2.3"
 gem 'rmagick'
+gem 'will_paginate', "~> 3.0pre2"
+gem 'jquery-rails'
 
 group :test, :development do
   gem 'rspec'

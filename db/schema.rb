@@ -12,6 +12,39 @@
 
 ActiveRecord::Schema.define(:version => 20110125025539) do
 
+  create_table "appliances", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "entrees", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "equipments", :force => true do |t|
+    t.integer "recipe_id",    :null => false
+    t.integer "appliance_id", :null => false
+  end
+
+  create_table "foods", :force => true do |t|
+    t.integer "recipe_id",     :null => false
+    t.integer "ingredient_id", :null => false
+  end
+
+  create_table "ingredients", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "meals", :force => true do |t|
+    t.integer "recipe_id", :null => false
+    t.integer "entree_id", :null => false
+  end
+
   create_table "profiles", :force => true do |t|
     t.string   "username"
     t.integer  "user_id"
@@ -22,6 +55,17 @@ ActiveRecord::Schema.define(:version => 20110125025539) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+  end
+
+  create_table "recipes", :force => true do |t|
+    t.string   "title"
+    t.integer  "difficulty"
+    t.text     "short_desc"
+    t.text     "instructions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "profile_id"
+    t.integer  "cook_time"
   end
 
   create_table "slugs", :force => true do |t|

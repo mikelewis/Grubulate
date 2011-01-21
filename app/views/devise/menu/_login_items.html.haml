@@ -3,7 +3,7 @@
     Welcome
     %b= current_profile.username
     = link_to "Logout",destroy_user_session_path
-    = link_to "Edit", edit_profile_path
+    = link_to "Edit", edit_profile_path(current_profile)
 - else
   %li
     = link_to "Login", new_user_session_path

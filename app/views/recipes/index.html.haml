@@ -1,0 +1,6 @@
+%strong Recipes:
+= link_to "Create new recipe", new_recipe_path
+
+= render :partial => "recipe_preview", :collection => @recipes, :as => :recipe
+
+= will_paginate @recipes

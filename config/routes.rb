@@ -1,6 +1,11 @@
 Grubulate::Application.routes.draw do
 
+  match 'ingredients/' => 'ingredients#index'
+
   resources :profiles
+
+  resources :recipes
+
   devise_for :users
 
   # The priority is based upon order of creation:

@@ -1,0 +1,27 @@
+
+%div
+  %strong= link_to recipe.title, recipe
+  - if recipe.profile == current_profile
+    = link_to " - Edit", edit_recipe_path(recipe)
+    = link_to " - Delete", recipe_path(recipe), :confirm => "are you sure?", :method => :delete
+  %i
+    by: #{recipe.profile.username}
+  %br
+  Difficulty: #{recipe.difficulty}
+  %br
+  Entrees:
+  - for entree in recipe.entrees
+    #{entree.name}
+
+  %div
+    Ingredients:
+    - for ingredient in recipe.ingredients
+      #{ingredient.name}
+  %br
+  Short Description: #{recipe.short_desc}
+  %br
+  Cook Time: #{recipe.cook_time}
+  %br
+  %strong Instructions
+  %p
+    #{simple_format(recipe.instructions)}
