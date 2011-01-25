@@ -11,6 +11,9 @@ gem 'mysql'
 gem 'haml'
 gem 'haml-rails'
 gem 'devise'
+gem 'friendly_id', "~> 3.2"
+gem 'paperclip', "~>2.3"
+gem 'rmagick'
 
 group :test, :development do
   gem 'rspec'

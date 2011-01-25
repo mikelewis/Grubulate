@@ -1,0 +1,15 @@
+- if @profile
+	You're on
+	%strong= @profile_displayed.username
+	's page!
+	%p
+	=image_tag @profile_displayed.avatar.url(:small)
+	%br/
+	%strong About Me: 
+	= @profile_displayed.bio
+	%br/
+		
+	%br/
+- else
+	No Profile Found!
+		
