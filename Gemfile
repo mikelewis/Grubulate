@@ -16,6 +16,7 @@ gem 'paperclip', "~>2.3"
 gem 'rmagick'
 gem 'will_paginate', "~> 3.0pre2"
 gem 'jquery-rails'
+gem 'seed-fu'
 
 group :test, :development do
   gem 'rspec'
@@ -27,7 +28,6 @@ group :test, :development do
   gem 'database_cleaner'
   gem 'hpricot'
   gem 'ruby_parser'
-  gem 'seed-fu'
 end
 
 
