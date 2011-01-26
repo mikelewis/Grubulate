@@ -58,7 +58,7 @@ namespace :deploy do
   end
 
   task :seed_db, :roles => :app do
-    run "cd #{release_path} && RAILS_ENV=\"production\" rake db:seed_fu FILTER=production"
+    run "cd #{release_path} && RAILS_ENV=production rake db:seed_fu FILTER=production"
   end
 
   desc "Update the crontab file"
