@@ -1,15 +1,21 @@
-- if @profile
-	You're on
-	%strong= @profile_displayed.username
-	's page!
-	%p
-	=image_tag @profile_displayed.avatar.url(:small)
-	%br/
-	%strong About Me: 
-	= @profile_displayed.bio
-	%br/
-		
-	%br/
+- if @profile_displayed
+  You're on
+  %strong= @profile_displayed.username
+  's page!
+  %p
+  =image_tag @profile_displayed.avatar.url(:small)
+  %br/
+  %strong About Me: 
+  = @profile_displayed.bio
+  %br/
+
+  %br/
+
+  %div
+    %strong #{@profile_displayed.username}'s Recipes
+    = render :partial => "recipes/recipe_preview", :collection => @recipes, :as => :recipe
+
+    = will_paginate @recipes
 - else
-	No Profile Found!
-		
+  No Profile Found!
+

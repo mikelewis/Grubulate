@@ -41,5 +41,9 @@ class Recipe < ActiveRecord::Base
     def search(page)
       paginate :page => page, :order => "created_at DESC"
     end
+
+    def get_by_profile(page, profile)
+      paginate :page => page, :order => "created_at DESC", :conditions => ["recipes.profile_id = ?", profile.id]
+    end
   end
 end

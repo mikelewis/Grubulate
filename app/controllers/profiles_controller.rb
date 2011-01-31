@@ -1,8 +1,8 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!, :except => :show
   def show
-    @profile = current_profile
     @profile_displayed = Profile.find(params[:id])
+    @recipes = Recipe.get_by_profile(params[:page], @profile_displayed)
   end
 
   def edit
