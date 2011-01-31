@@ -20,7 +20,7 @@ class Recipe < ActiveRecord::Base
 
   validates :ingredients, :presence => true
 
-  attr_accessible :title, :short_desc, :instructions, :difficulty, :cook_time, :entree_ids, :ingredient_ids
+  attr_accessible :title, :short_desc, :instructions, :difficulty, :cook_time, :entree_ids, :ingredient_ids, :appliance_ids
 
   def add_ingredient(ingr)
     ingredients << ingr
@@ -28,6 +28,10 @@ class Recipe < ActiveRecord::Base
 
   def ingredientsNames
     ingredients.map{|e| e.name}.join(', ')
+  end
+
+  def appliancesNames
+    appliances.map{|e| e.name}.join(', ')
   end
 
   class << self

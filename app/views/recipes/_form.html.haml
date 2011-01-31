@@ -20,6 +20,10 @@
   =label(:ingredient, "Ingredients")
   .ui-widget
     %input{:id => :ingredients, :name => :ingredients , :size => 50, :value => @recipe.ingredientsNames ? @recipe.ingredientsNames : (!flash[:ingredients].nil? ? flash[:ingredients] : "")}
+  =label(:ingredient, "Appliances")
+  .ui-widget
+    %input{:id => :appliances, :name => :appliances , :size => 50, :value => @recipe.appliancesNames ? @recipe.appliancesNames : (!flash[:appliances].nil? ? flash[:appliances] : "")}
+  
   %p
     = f.label "Short Description"
     = f.text_area :short_desc

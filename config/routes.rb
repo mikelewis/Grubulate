@@ -1,5 +1,7 @@
 Grubulate::Application.routes.draw do
 
+
+  match 'appliances/' => 'appliances#index'
   match 'ingredients/' => 'ingredients#index'
 
   resources :profiles

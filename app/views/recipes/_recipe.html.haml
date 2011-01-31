@@ -17,6 +17,12 @@
     Ingredients:
     - for ingredient in recipe.ingredients
       #{ingredient.name}
+
+  %div
+    Appliances:
+    - for appliance in recipe.appliances
+      #{appliance.name}
+
   %br
   Short Description: #{recipe.short_desc}
   %br

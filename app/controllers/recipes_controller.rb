@@ -16,6 +16,10 @@ class RecipesController < ApplicationController
   def create
     params[:recipe][:entree_ids] ||= []
     params[:ingredients] ||= ""
+    params[:appliances] ||= ""
+    params[:recipe][:appliance_ids] = Appliance.names_to_ids(
+      params[:appliances].strip.split(',').map{|e| e.strip}
+    )
     params[:recipe][:ingredient_ids] = Ingredient.names_to_ids(
       params[:ingredients].strip.split(',').map{|e| e.strip}
     )
@@ -27,6 +31,7 @@ class RecipesController < ApplicationController
       @entrees = Entree.all
       flash[:entrees] = params[:recipe][:entree_ids]
       flash[:ingredients] = params[:ingredients].strip
+      flash[:appliances] = params[:appliances].strip
       render :action => :new
     end
   end
@@ -39,6 +44,10 @@ class RecipesController < ApplicationController
   def update
     params[:recipe][:entree_ids] ||= []
     params[:ingredients] ||= ""
+    params[:appliances] ||= ""
+    params[:recipe][:appliance_ids] = Appliance.names_to_ids(
+      params[:appliances].strip.split(',').map{|e| e.strip}
+    )
     params[:recipe][:ingredient_ids] = Ingredient.names_to_ids(
       params[:ingredients].strip.split(',').map{|e| e.strip}
     )
@@ -49,6 +58,7 @@ class RecipesController < ApplicationController
     else
       @entrees = Entree.all
       flash[:ingredients] = params[:ingredients].strip
+      flash[:appliances] = params[:appliances].strip
       flash[:entrees] = params[:recipe][:entree_ids]
       render :action => "edit"
     end
