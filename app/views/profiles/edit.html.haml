@@ -1,6 +1,15 @@
 = form_for(@profile, :html => { :multipart => true }) do |f|
-	= f.text_area :bio
-	%p
-	= f.file_field :avatar
-	= f.submit "Update"
-	
+  = form_errors(@profile)
+
+  = f.label :bio
+  = f.text_area :bio
+  %p
+    %strong Current Profile Picture
+    =image_tag @profile.avatar.url(:small)
+    %br/
+    = f.label "Change Profile Picture"
+    %br/
+    = f.file_field :avatar
+    %br/
+    = f.submit "Update"
+
