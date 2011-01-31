@@ -13,3 +13,17 @@ Entree.seed(:name,
            end
 
            Ingredient.seed(:name, ingredients.each{|e| e})
+
+
+                     
+           appliances = []
+           File.open("#{Rails.root.join('db/fixtures/')}appliances.txt", 'r') do |file|
+             while(line = file.gets)
+               appliances << {:name => line.strip.titleize}
+             end
+           end
+
+           Appliance.seed(:name, appliances.each{|e| e})
+
+
+
