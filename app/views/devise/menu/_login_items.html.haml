@@ -1,7 +1,8 @@
 - if user_signed_in?
   %li
     Welcome
-    %b= current_profile.username
+    %b
+      =render "profiles/link", :profile => current_profile
     = link_to "Logout",destroy_user_session_path
     = link_to "Edit", edit_profile_path(current_profile)
 - else

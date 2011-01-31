@@ -10,7 +10,7 @@ class Profile < ActiveRecord::Base
   has_friendly_id :username
   
   #profile pic
-  has_attached_file :avatar, :styles => { :small => "150x150#", :thumb => "100x100" }
+  has_attached_file :avatar, :styles => { :small => ["150x150#", :png], :thumb => ["50x50#", :png] }
 
   def create_recipe(recipe)
     return false unless recipe.valid?

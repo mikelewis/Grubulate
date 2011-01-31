@@ -5,5 +5,4 @@
   %br
   Short Description: #{recipe.short_desc}
   %i
-    by: #{recipe.profile.username}
-
+    =render "profiles/link", :profile => recipe.profile
