@@ -11,8 +11,8 @@ class Ingredient < ActiveRecord::Base
   end
 
   class << self
-    def names_to_ids(ingredients)
-      where(:name => ingredients).select('id').map{|e| e.id}
+    def names_to_ids(ingredients, to_s = false)
+      where(:name => ingredients).select('id').map{|e| (to_s && e.id.to_s) || e.id}
     end
   end
 end

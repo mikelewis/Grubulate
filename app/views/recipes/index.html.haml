@@ -1,3 +1,41 @@
+- content_for :head do
+  = javascript_include_tag "autocomplete-recipe"
+
+
+%strong Search Recipes:
+= form_for @search do |f|
+
+  =label(:ingredient, "Ingredients")
+  .ui-widget
+    %input{:id => :ingredients, :name => :ingredients , :size => 50, :value => (!flash[:search_ingredients].nil? ? flash[:search_ingredients] : "")}
+  =label(:ingredient, "Appliances")
+  .ui-widget
+    %input{:id => :appliances, :name => :appliances , :size => 50, :value => (!flash[:search_appliances].nil? ? flash[:search_appliances] : "")}
+  
+
+  
+  =f.label "Difficulty Range from"
+  = f.text_field :difficulty_gte, :size => 8
+  = f.label :difficulty_lte, "to"
+  = f.text_field :difficulty_lte, :size => 8
+
+  %br/
+  =f.label "Cook Time Range from"
+  = f.text_field :cook_time_gte, :size => 8
+  = f.label :cook_time_lte, "to"
+  = f.text_field :cook_time_lte, :size => 8
+
+
+  %br/
+   
+  =f.label "Entree Types"
+  - f.collection_checks :entrees_id_in, Entree.all, :id, :name do |check|
+    = check.box
+    = check.label
+    
+  %br/
+  =f.submit
+
 %strong Recipes:
 = link_to "Create new recipe", new_recipe_path
 

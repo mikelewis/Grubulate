@@ -74,6 +74,15 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta_search (0.9.8)
+      actionpack (~> 3.0.0)
+      activerecord (~> 3.0.0)
+      activesupport (~> 3.0.0)
+      arel (~> 1.0.1)
+    meta_where (0.9.6)
+      activerecord (~> 3.0.0)
+      activesupport (~> 3.0.0)
+      arel (~> 1.0.1)
     mime-types (1.16)
     mysql (2.8.1)
     nokogiri (1.4.4)
@@ -146,6 +155,8 @@ DEPENDENCIES
   haml-rails
   hpricot
   jquery-rails
+  meta_search
+  meta_where
   mysql
   paperclip (~> 2.3)
   rails (= 3.0.1)

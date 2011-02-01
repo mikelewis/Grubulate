@@ -1,7 +1,14 @@
 class RecipesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   def index
-    @recipes = Recipe.search(params[:page])
+
+    params[:search]["ingredients_name_equals_any"] = params[:ingredients].strip.split(',').map{|e| e.strip} if params[:ingredients]
+    params[:search]["appliances_name_equals_any"] = params[:appliances].strip.split(',').map{|e| e.strip} if params[:appliances]
+    
+    flash[:search_ingredients] = params[:ingredients].strip if params[:ingredients]
+    flash[:search_appliances] = params[:appliances].strip if params[:appliances]
+    @search = Recipe.search(params[:search])
+    @recipes = @search.relation.select("DISTINCT(recipes.id), recipes.*").paginate :page => params[:page], :order => "recipes.created_at DESC"
   end
 
   def show

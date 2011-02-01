@@ -17,6 +17,8 @@ gem 'rmagick'
 gem 'will_paginate', "~> 3.0pre2"
 gem 'jquery-rails'
 gem 'seed-fu'
+gem "meta_where"
+gem 'meta_search'
 
 group :test, :development do
   gem 'rspec'
