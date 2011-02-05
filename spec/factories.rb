@@ -13,6 +13,10 @@ Factory.define :entree do |e|
   e.sequence(:name) {|n| "Entree#{n}"}
 end
 
+Factory.define :ingredient do |a|
+  a.sequence(:name) {|n| "Ingredient #{n}"}
+end
+
 Factory.define :recipe do |e|
   e.sequence(:title) { |n| "My Title #{n}"}
   e.short_desc "This is a short description regarding this recipe... I hope you find it OK!"
@@ -20,12 +24,10 @@ Factory.define :recipe do |e|
   e.difficulty 3
   e.cook_time 65
   e.profile {|i| i.association(:profile)}
+  e.ingredients { |ingredients| [ingredients.association(:ingredient)]}
 end
 
 Factory.define :appliance do |a|
   a.sequence(:name) {|n| "Appliance #{n}"}
 end
 
-Factory.define :ingredient do |a|
-  a.sequence(:name) {|n| "Ingredient #{n}"}
-end

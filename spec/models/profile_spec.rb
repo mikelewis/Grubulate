@@ -19,6 +19,36 @@ describe Profile do
       @profile.recipes.length.should eq(0)
     end
 
+    context "Favorite Chefs" do
+      before do
+        @profile1 = Factory(:profile)
+        @profile.add_favorite_chef(@profile1)
+      end
+      it "should be able to add a favorite chef" do
+        @profile.favorite_chefs.should eq([@profile1])
+
+      end
+
+      it "should be able to remove a favorite chef" do
+        @profile.remove_favorite_chef(@profile1)
+        @profile.favorite_chefs.length.should eq(0)
+
+      end
+
+      it "should not be able to add a favorite chef more than once" do
+        lambda{@profile.add_favorite_chef(@profile1)}.should raise_error
+      end
+
+      it "should be able to have fans" do
+        @profile1.fans.should eq([@profile])
+      end
+
+      it "should not be able to add itself to favorite chefs" do
+        lambda{@profile.add_favorite_chef(@profile)}.should raise_error
+      end
+
+    end
+
 
   end
 end

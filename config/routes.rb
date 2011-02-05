@@ -4,7 +4,10 @@ Grubulate::Application.routes.draw do
   match 'appliances/' => 'appliances#index'
   match 'ingredients/' => 'ingredients#index'
 
-  resources :profiles
+  resources :profiles do
+    resources :favorites, :only => [:index, :create, :destroy]
+    resources :fans, :only => [:index]
+  end
 
   resources :recipes
 

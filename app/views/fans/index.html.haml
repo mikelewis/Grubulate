@@ -1,0 +1,5 @@
+Number of Fans: #{@fans.count}
+- for fan in @fans
+  %div
+  = render "profiles/link", :profile => fan
+  

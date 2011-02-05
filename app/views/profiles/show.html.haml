@@ -3,13 +3,25 @@
   %strong= @profile_displayed.username
   's page!
   %p
-  =image_tag @profile_displayed.avatar.url(:small)
+    =image_tag @profile_displayed.avatar.url(:small)
   %br/
   %strong About Me: 
   = @profile_displayed.bio
   %br/
 
+  Number of Fans: #{@profile_displayed.fans.count}
+  - if current_profile != @profile_displayed
+
+    - if current_profile and current_profile.is_a_fan_of(@profile_displayed)
+      = link_to "Not a fan", profile_favorite_path(@profile_displayed, current_profile), :method => :delete
+    - else
+      = link_to "Favorite this chef", profile_favorites_path(@profile_displayed), :method => :post
+  = link_to "See Fans", profile_fans_path(@profile_displayed)
+
   %br/
+
+  %div
+    = link_to "See Favorite Chefs", profile_favorites_path(@profile_displayed)
 
   %div
     %strong #{@profile_displayed.username}'s Recipes

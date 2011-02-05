@@ -84,6 +84,7 @@ describe Recipe do
     end
 
     it "should have one ingredient after adding an ingredient" do
+      @recipe.ingredients = []
       @recipe.add_ingredient(@ingredient)
       @recipe.ingredients.length.should eq(1)
     end

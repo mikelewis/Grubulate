@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110125025539) do
+ActiveRecord::Schema.define(:version => 20110205021841) do
 
   create_table "appliances", :force => true do |t|
     t.string   "name"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(:version => 20110125025539) do
     t.integer "recipe_id",    :null => false
     t.integer "appliance_id", :null => false
   end
+
+  create_table "favorite_chefs", :force => true do |t|
+    t.integer  "profile_id"
+    t.integer  "chef_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorite_chefs", ["chef_id"], :name => "index_favorite_chefs_on_chef_id", :unique => true
 
   create_table "foods", :force => true do |t|
     t.integer "recipe_id",     :null => false

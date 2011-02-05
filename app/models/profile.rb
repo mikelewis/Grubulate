@@ -1,6 +1,13 @@
 class Profile < ActiveRecord::Base
   belongs_to :user
   has_many :recipes
+
+  has_many :fan_relationships, :class_name => "FavoriteChef", :dependent => :destroy
+  has_many :fans, :through => :fan_relationships, :source => :chef
+
+  has_many :favorite_chefs_relationships, :class_name => "FavoriteChef", :foreign_key => :chef_id, :dependent => :destroy
+  has_many :favorite_chefs, :through => :favorite_chefs_relationships, :source => :profile
+
   validates :username, :presence => true, :uniqueness => true
   validates :bio, :length => {:maximum => 1000}
 
@@ -17,4 +24,17 @@ class Profile < ActiveRecord::Base
 
     recipes << recipe
   end
+
+  def add_favorite_chef(chef)
+    favorite_chefs << chef
+  end
+
+  def remove_favorite_chef(chef)
+    favorite_chefs.delete(chef)
+  end
+
+  def is_a_fan_of(profile)
+    favorite_chefs.include?(profile)
+  end
+
 end
