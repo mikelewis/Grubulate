@@ -18,6 +18,9 @@ class Recipe < ActiveRecord::Base
   has_many :equipments
   has_many :appliances, :through => :equipments
 
+  has_many :comments, :dependent => :destroy
+  has_many :most_recent_comments, :class_name => 'Comment', :order => 'created_at DESC', :limit => 10
+
   validates :ingredients, :presence => true
 
   attr_accessible :title, :short_desc, :instructions, :difficulty, :cook_time, :entree_ids, :ingredient_ids, :appliance_ids
@@ -32,6 +35,18 @@ class Recipe < ActiveRecord::Base
 
   def appliancesNames
     appliances.map{|e| e.name}.join(', ')
+  end
+
+  def add_comment(attrs)
+    if !attrs.is_a?(Hash)
+      return false
+    end
+    comments.create(attrs)
+  end
+
+
+  def remove_comment(comment)
+    comments.delete(comment)
   end
 
   class << self

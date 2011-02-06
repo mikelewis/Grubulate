@@ -1,0 +1,8 @@
+= form_for flash[:invalid_comment] || @comment, :url => recipe_comments_path(@recipe)  do |f|
+  = form_errors(flash[:invalid_comment] || @comment)
+  %p
+    = f.label :body
+    = f.text_area :body
+  %p
+    = f.submit
+  

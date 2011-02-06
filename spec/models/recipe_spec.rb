@@ -90,4 +90,27 @@ describe Recipe do
     end
 
   end
+
+  context "comments" do
+    before do
+      @comment = Factory(:comment)
+      @comment_attrs = {:body => @comment.body, :profile_id => @comment.profile_id, :recipe_id => @comment.recipe_id}
+    end
+
+    it "should be able to add a comment" do
+      @recipe.add_comment(@comment_attrs)
+      @recipe.comments.length.should eq(1)
+    end
+
+    it "should not add an invalid comment" do
+      comment = @recipe.add_comment(@comment_attrs.except(:body))
+      comment.should_not be_valid
+    end
+
+    it "most recent comments should return only 10 comments" do
+      (1..20).each{|e| @recipe.add_comment(:body => "yoyoyo #{e}", :profile => Factory(:profile))}
+      @recipe.most_recent_comments.length.should eq(10)
+    end
+
+  end
 end

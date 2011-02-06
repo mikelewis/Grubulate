@@ -1,0 +1,6 @@
+=render "profiles/link", :profile => comment.profile 
+posted:
+- if comment.profile == current_profile
+  = link_to " - Delete", recipe_comment_path(comment.recipe, comment), :confirm => "are you sure?", :method => :delete
+%div
+  #{simple_format(comment.body)}

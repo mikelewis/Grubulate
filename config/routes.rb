@@ -1,6 +1,7 @@
 Grubulate::Application.routes.draw do
 
 
+
   match 'appliances/' => 'appliances#index'
   match 'ingredients/' => 'ingredients#index'
 
@@ -9,7 +10,9 @@ Grubulate::Application.routes.draw do
     resources :fans, :only => [:index]
   end
 
-  resources :recipes
+  resources :recipes do
+    resources :comments, :only => [:create, :destroy, :index]
+  end
 
   devise_for :users
 

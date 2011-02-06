@@ -31,3 +31,8 @@ Factory.define :appliance do |a|
   a.sequence(:name) {|n| "Appliance #{n}"}
 end
 
+Factory.define :comment do |c|
+  c.body  "Great Recipe man!"
+  c.recipe {|i| i.association(:recipe)}
+  c.profile {|i| i.association(:profile)}
+end

@@ -1,1 +1,4 @@
 = render @recipe
+= render 'comments/form'
+= render @recipe.most_recent_comments
+= link_to "View all comments for this recipe", recipe_comments_path(@recipe)

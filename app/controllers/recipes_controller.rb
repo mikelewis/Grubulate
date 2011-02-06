@@ -12,7 +12,8 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.find(params[:id], :include => :most_recent_comments)
+    @comment = Comment.new
   end
 
   def new

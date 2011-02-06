@@ -1,0 +1,11 @@
+%div
+  %strong Comments for:
+  = render :partial => "recipes/recipe_preview", :object => @recipe, :as => :recipe
+
+
+%br/
+%br/
+%div
+  %strong Comments
+  %br/
+  = render @comments

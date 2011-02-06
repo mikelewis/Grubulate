@@ -10,13 +10,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110205021841) do
+ActiveRecord::Schema.define(:version => 20110206004518) do
 
   create_table "appliances", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "comments", :force => true do |t|
+    t.text     "body"
+    t.integer  "recipe_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "profile_id"
+  end
+
+  add_index "comments", ["profile_id"], :name => "index_comments_on_profile_id"
+  add_index "comments", ["recipe_id"], :name => "index_comments_on_recipe_id"
 
   create_table "entrees", :force => true do |t|
     t.string   "name"

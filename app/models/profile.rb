@@ -8,6 +8,8 @@ class Profile < ActiveRecord::Base
   has_many :favorite_chefs_relationships, :class_name => "FavoriteChef", :foreign_key => :chef_id, :dependent => :destroy
   has_many :favorite_chefs, :through => :favorite_chefs_relationships, :source => :profile
 
+  has_many :comments
+
   validates :username, :presence => true, :uniqueness => true
   validates :bio, :length => {:maximum => 1000}
 
