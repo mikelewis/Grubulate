@@ -9,6 +9,8 @@
 
     =render "profiles/link", :profile => recipe.profile 
   %br
+  = render "rate_recipe", :recipe => recipe
+  %br
   Difficulty: #{recipe.difficulty}
   %br
   Entrees:

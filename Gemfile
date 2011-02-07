@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'seed-fu'
 gem "meta_where"
 gem 'meta_search'
+gem 'ajaxful_rating', '3.0.0.beta3'
 
 group :test, :development do
   gem 'rspec'

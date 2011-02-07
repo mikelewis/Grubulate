@@ -11,6 +11,7 @@ Grubulate::Application.routes.draw do
   end
 
   resources :recipes do
+    post 'rate', :on => :member
     resources :comments, :only => [:create, :destroy, :index]
   end
 

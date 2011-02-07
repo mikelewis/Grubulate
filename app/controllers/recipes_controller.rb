@@ -79,6 +79,17 @@ class RecipesController < ApplicationController
     redirect_to(recipes_path)
   end
 
+  def rate
+    @recipe = Recipe.find(params[:id])
+    @recipe.rate(params[:stars], current_profile)
+    #render do |page|
+      #render :text => ratings_for(@recipe).to_yaml
+     # page.replace_html @recipe.wrapper_dom_id(params), ratings_for(@recipe, params.merge(:wrap => false))
+     # page.visual_effect :highlight, @recipe.wrapper_dom_id(params)
+    #end
+    
+  end
+
   private
 
 end

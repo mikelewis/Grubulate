@@ -1,4 +1,5 @@
 class Recipe < ActiveRecord::Base
+  ajaxful_rateable :stars => 5, :cache_column => :raiting_average
   cattr_reader :per_page
   @@per_page = 20
 

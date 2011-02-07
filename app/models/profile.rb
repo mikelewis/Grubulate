@@ -1,4 +1,5 @@
 class Profile < ActiveRecord::Base
+  ajaxful_rater
   belongs_to :user
   has_many :recipes
 

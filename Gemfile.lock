@@ -28,6 +28,7 @@ GEM
       activemodel (= 3.0.1)
       activesupport (= 3.0.1)
     activesupport (3.0.1)
+    ajaxful_rating (3.0.0.beta3)
     arel (1.0.1)
       activesupport (~> 3.0.0)
     babosa (0.2.1)
@@ -145,6 +146,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ajaxful_rating (= 3.0.0.beta3)
   cucumber-rails
   database_cleaner
   devise
