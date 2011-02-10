@@ -8,7 +8,7 @@ class RecipesController < ApplicationController
     flash[:search_ingredients] = params[:ingredients].strip if params[:ingredients]
     flash[:search_appliances] = params[:appliances].strip if params[:appliances]
     @search = Recipe.search(params[:search])
-    pagination_args = {:page => params[:page]}
+    pagination_args = {:page => params[:page], :include => [:profile]}
     pagination_args[:order] = "recipes.created_at DESC" if params[:meta_sort]
     @recipes = @search.relation.select("DISTINCT(recipes.id), recipes.*").paginate pagination_args
 

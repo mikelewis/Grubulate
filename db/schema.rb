@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110210023149) do
+ActiveRecord::Schema.define(:version => 20110210044700) do
 
   create_table "appliances", :force => true do |t|
     t.string   "name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20110210023149) do
     t.integer  "profile_id"
   end
 
+  add_index "comments", ["created_at"], :name => "index_comments_on_created_at"
   add_index "comments", ["profile_id"], :name => "index_comments_on_profile_id"
   add_index "comments", ["recipe_id"], :name => "index_comments_on_recipe_id"
 
@@ -40,6 +41,9 @@ ActiveRecord::Schema.define(:version => 20110210023149) do
     t.integer "appliance_id", :null => false
   end
 
+  add_index "equipments", ["appliance_id"], :name => "index_equipments_on_appliance_id"
+  add_index "equipments", ["recipe_id"], :name => "index_equipments_on_recipe_id"
+
   create_table "favorite_chefs", :force => true do |t|
     t.integer  "profile_id"
     t.integer  "chef_id"
@@ -48,11 +52,15 @@ ActiveRecord::Schema.define(:version => 20110210023149) do
   end
 
   add_index "favorite_chefs", ["chef_id"], :name => "index_favorite_chefs_on_chef_id", :unique => true
+  add_index "favorite_chefs", ["profile_id"], :name => "index_favorite_chefs_on_profile_id"
 
   create_table "foods", :force => true do |t|
     t.integer "recipe_id",     :null => false
     t.integer "ingredient_id", :null => false
   end
+
+  add_index "foods", ["ingredient_id"], :name => "index_foods_on_ingredient_id"
+  add_index "foods", ["recipe_id"], :name => "index_foods_on_recipe_id"
 
   create_table "ingredients", :force => true do |t|
     t.string   "name"
@@ -64,6 +72,9 @@ ActiveRecord::Schema.define(:version => 20110210023149) do
     t.integer "recipe_id", :null => false
     t.integer "entree_id", :null => false
   end
+
+  add_index "meals", ["entree_id"], :name => "index_meals_on_entree_id"
+  add_index "meals", ["recipe_id"], :name => "index_meals_on_recipe_id"
 
   create_table "profiles", :force => true do |t|
     t.string   "username"
@@ -77,6 +88,8 @@ ActiveRecord::Schema.define(:version => 20110210023149) do
     t.datetime "avatar_updated_at"
   end
 
+  add_index "profiles", ["user_id"], :name => "index_profiles_on_user_id", :unique => true
+
   create_table "rates", :force => true do |t|
     t.integer  "rater_id"
     t.integer  "rateable_id"
@@ -88,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20110210023149) do
   end
 
   add_index "rates", ["rateable_id", "rateable_type"], :name => "index_rates_on_rateable_id_and_rateable_type"
+  add_index "rates", ["rateable_id"], :name => "index_rates_on_rateable_id"
   add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
 
   create_table "recipe_images", :force => true do |t|
@@ -113,6 +127,11 @@ ActiveRecord::Schema.define(:version => 20110210023149) do
     t.decimal  "rating_average", :precision => 6, :scale => 2, :default => 0.0
     t.integer  "comments_count",                               :default => 0
   end
+
+  add_index "recipes", ["cook_time"], :name => "index_recipes_on_cook_time"
+  add_index "recipes", ["created_at"], :name => "index_recipes_on_created_at"
+  add_index "recipes", ["difficulty"], :name => "index_recipes_on_difficulty"
+  add_index "recipes", ["profile_id"], :name => "index_recipes_on_profile_id"
 
   create_table "slugs", :force => true do |t|
     t.string   "name"

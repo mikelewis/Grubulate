@@ -3,7 +3,7 @@
   %br
   Difficulty: #{recipe.difficulty}
   %br
-  = render "recipes/rate_recipe", :recipe => recipe
+  = render :partial => "recipes/rate_recipe", :object => recipe, :as => :recipe, :locals => {:static => true}
   %br
   Short Description: #{recipe.short_desc}
   %i

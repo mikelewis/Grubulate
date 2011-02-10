@@ -20,7 +20,7 @@ class Recipe < ActiveRecord::Base
   has_many :appliances, :through => :equipments
 
   has_many :comments, :dependent => :destroy
-  has_many :most_recent_comments, :class_name => 'Comment', :order => 'created_at DESC', :limit => 10
+  has_many :most_recent_comments, :class_name => 'Comment', :order => 'created_at DESC', :limit => 10, :include => [:profile]
 
   validates :ingredients, :presence => true
 
@@ -59,7 +59,7 @@ class Recipe < ActiveRecord::Base
     #end
 
     def get_by_profile(page, profile)
-      paginate :page => page, :order => "created_at DESC", :conditions => ["recipes.profile_id = ?", profile.id]
+      paginate :page => page, :order => "created_at DESC", :conditions => ["recipes.profile_id = ?", profile.id], :include => [:profile]
     end
   end
 end

@@ -1,3 +1,7 @@
 %div[recipe, :rate]
   %strong Rating:
-  = ratings_for recipe
+  - static ||= nil
+  - if static
+    = ratings_for recipe, :static
+  - else
+    = ratings_for recipe
