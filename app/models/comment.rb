@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  belongs_to :recipe
+  belongs_to :recipe, :counter_cache => true
   belongs_to :profile
 
   validates :body, :presence => true, :length => {:minimum => 3, :maximum => 1000}

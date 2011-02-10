@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110207184853) do
+ActiveRecord::Schema.define(:version => 20110210023149) do
 
   create_table "appliances", :force => true do |t|
     t.string   "name"
@@ -90,6 +90,17 @@ ActiveRecord::Schema.define(:version => 20110207184853) do
   add_index "rates", ["rateable_id", "rateable_type"], :name => "index_rates_on_rateable_id_and_rateable_type"
   add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
 
+  create_table "recipe_images", :force => true do |t|
+    t.string   "caption"
+    t.integer  "recipe_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
   create_table "recipes", :force => true do |t|
     t.string   "title"
     t.integer  "difficulty"
@@ -100,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20110207184853) do
     t.integer  "profile_id"
     t.integer  "cook_time"
     t.decimal  "rating_average", :precision => 6, :scale => 2, :default => 0.0
+    t.integer  "comments_count",                               :default => 0
   end
 
   create_table "slugs", :force => true do |t|

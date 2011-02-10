@@ -39,6 +39,11 @@
 %strong Recipes:
 = link_to "Create new recipe", new_recipe_path
 
+%div
+  %strong Sort By:
+  = sort_link @search, :rating_average, "Rating"
+  | 
+  = sort_link @search, :comments_count, "Comments"
 = render :partial => "recipe_preview", :collection => @recipes, :as => :recipe
 
 = will_paginate @recipes
