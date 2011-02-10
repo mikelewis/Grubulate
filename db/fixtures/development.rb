@@ -20,6 +20,8 @@ jouhan_profile = Profile.seed(:username) do |s|
   s.user_id = jouhan_user.first.id
 end
 
+
+
 profileIds = [madmike_profile.first.id, jouhan_profile.first.id]
 
 Entree.seed(:name,
@@ -38,7 +40,7 @@ Entree.seed(:name,
 
            Ingredient.seed(:name, ingredients.each{|e| e})
 
-                     
+
            appliances = []
            File.open("#{Rails.root.join('db/fixtures/')}appliances.txt", 'r') do |file|
              while(line = file.gets)
@@ -56,8 +58,18 @@ Entree.seed(:name,
              recipes << {
                :title => "Recipe #{num}", :difficulty => rand(5) + 1,
                :short_desc => "Short Desc #{num}", :instructions => "Instructions #{num}",
-               :cook_time => rand(150), :profile_id => profileIds[rand(profileIds.size)]
+               :cook_time => rand(150), :profile_id => profileIds[rand(profileIds.size)],
+               :rating_average => ("%6.2f" % rand).to_f + rand(4) + 1
+
              }
            end
            Recipe.seed(:id, :title, recipes.each{|r| r})
 
+           Recipe.all.each do |recipe|
+             next if !recipe.comments.empty?
+             (1..rand(10)).each do |num|
+               recipe.comments.create({
+                  :body => "Fantastic Recipe #{num}", :profile_id => profileIds[rand(profileIds.size)]
+               })
+             end
+           end
