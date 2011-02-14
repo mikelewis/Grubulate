@@ -10,7 +10,8 @@ gem 'rails', '3.0.1'
 gem 'mysql'
 gem 'haml'
 gem 'haml-rails'
-gem 'devise'
+gem 'devise', :git => 'https://github.com/plataformatec/devise.git'
+gem 'omniauth'
 gem 'friendly_id', "~> 3.2"
 gem 'paperclip', "~>2.3"
 gem 'rmagick'

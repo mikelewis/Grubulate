@@ -1,3 +1,4 @@
+require 'URLTempfile'
 class Profile < ActiveRecord::Base
   ajaxful_rater
   belongs_to :user
@@ -11,7 +12,7 @@ class Profile < ActiveRecord::Base
 
   has_many :comments
 
-  validates :username, :presence => true, :uniqueness => true
+  validates :username, :presence => true, :uniqueness => true, :format => /[a-zA-Z0-9_]/, :length => {:minimum => 5, :maximum => 20}
   validates :bio, :length => {:maximum => 1000}
 
   attr_accessible :username, :bio, :avatar
@@ -40,4 +41,8 @@ class Profile < ActiveRecord::Base
     favorite_chefs.include?(profile)
   end
 
+  def url_to_image(url,save)
+      self.avatar = URLTempfile.new(url)
+      self.save if save
+  end
 end
