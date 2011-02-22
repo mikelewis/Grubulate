@@ -1,0 +1,16 @@
+#notification-nav
+  - if !current_page?(:type => "all")
+    Unseen Notifications
+  - else
+    = link_to "Unseen Notifications", notifications_path 
+  |
+  - if current_page?(:type => "all")
+    All Notifications
+  - else
+    = link_to "All Notifications", notifications_path(:type => "all")
+
+%strong Notifications:
+- if @notifications == [] #empty? throws a polymorphic error... what.
+  %p No Notifications
+- else
+  =render @notifications, :locals => {:delete => true}

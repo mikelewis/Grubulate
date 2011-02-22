@@ -1,0 +1,9 @@
+- html_attrs = {}
+- inline ||= nil
+- if inline
+  - html_attrs[:style] = "display: inline;"
+  
+.notification{html_attrs}
+  =render :partial => "notifications/#{notification.notifiable_type.downcase}_notification", :object => notification, :as => :notification
+  - if !notification.seen
+    = link_to "- X", notification_path(notification), :confirm => "are you sure?", :method => :delete

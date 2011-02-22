@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110214040802) do
+ActiveRecord::Schema.define(:version => 20110221224405) do
 
   create_table "appliances", :force => true do |t|
     t.string   "name"
@@ -83,6 +83,20 @@ ActiveRecord::Schema.define(:version => 20110214040802) do
 
   add_index "meals", ["entree_id"], :name => "index_meals_on_entree_id"
   add_index "meals", ["recipe_id"], :name => "index_meals_on_recipe_id"
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "seen",            :default => false
+  end
+
+  add_index "notifications", ["notifiable_id"], :name => "index_notifications_on_notifiable_id"
+  add_index "notifications", ["receiver_id"], :name => "index_notifications_on_receiever_id"
+  add_index "notifications", ["sender_id"], :name => "index_notifications_on_sender_id"
 
   create_table "profiles", :force => true do |t|
     t.string   "username"

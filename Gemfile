@@ -22,6 +22,7 @@ gem "meta_where"
 gem 'meta_search'
 gem 'ajaxful_rating', '3.0.0.beta3'
 gem 'bullet', :group => "development"
+gem 'no_peeping_toms', :group => "test"
 
 group :test, :development do
   gem 'rspec'

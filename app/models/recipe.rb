@@ -19,8 +19,8 @@ class Recipe < ActiveRecord::Base
   has_many :equipments
   has_many :appliances, :through => :equipments
 
-  has_many :comments, :dependent => :destroy
-  has_many :most_recent_comments, :class_name => 'Comment', :order => 'created_at DESC', :limit => 10, :include => [:profile]
+  has_many :comments, :dependent => :destroy, :include => [:profile, :recipe]
+  has_many :most_recent_comments, :class_name => 'Comment', :order => 'created_at DESC', :limit => 10, :include => [:profile, :recipe]
 
   validates :ingredients, :presence => true
 

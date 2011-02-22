@@ -5,6 +5,14 @@
       =render "profiles/link", :profile => current_profile
     = link_to "Logout",destroy_user_session_path
     = link_to "Edit", edit_profile_path(current_profile)
+    %br/
+    - num_unseen = current_profile.num_unseen_notifications
+    - if num_unseen != 0
+      = render :partial => "notifications/notification", :object => current_profile.unseen_notifications.first, :as => :notification, :locals => {:inline => true}
+      |
+      = link_to num_unseen, notifications_path
+
+
 - else
   %li
     = link_to "Login", new_user_session_path

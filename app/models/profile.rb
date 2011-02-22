@@ -2,6 +2,8 @@ require 'URLTempfile'
 class Profile < ActiveRecord::Base
   ajaxful_rater
   belongs_to :user
+  has_many :notifications, :foreign_key => "receiver_id", :order => 'created_at DESC', :include => [:sender, :notifiable]
+  has_many :unseen_notifications, :class_name => "Notification", :foreign_key => "receiver_id", :conditions => {:seen => false}, :order => 'created_at DESC', :limit => 5, :include => [:sender, :notifiable]
   has_many :recipes
 
   has_many :fan_relationships, :class_name => "FavoriteChef", :dependent => :destroy
@@ -29,6 +31,10 @@ class Profile < ActiveRecord::Base
     recipes << recipe
   end
 
+  def num_unseen_notifications
+    Notification.count(:conditions => {:receiver_id => id, :seen => false})
+  end
+
   def add_favorite_chef(chef)
     favorite_chefs << chef
   end
@@ -44,5 +50,11 @@ class Profile < ActiveRecord::Base
   def url_to_image(url,save)
       self.avatar = URLTempfile.new(url)
       self.save if save
+  end
+
+  def seen_notification(id)
+    notification = notifications.find(id)
+    notification.seen = true
+    notification.save
   end
 end

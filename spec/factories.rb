@@ -42,3 +42,10 @@ Factory.define :comment do |c|
   c.recipe {|i| i.association(:recipe)}
   c.profile {|i| i.association(:profile)}
 end
+
+Factory.define :notification do |n|
+  n.sender {|i| i.association(:profile)}
+  n.receiver {|i| i.association(:profile)}
+  n.notifiable {|i| i.association(:recipe)}
+  n.notifiable_type "Recipe"
+end
