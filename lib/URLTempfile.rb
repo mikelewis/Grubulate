@@ -2,6 +2,13 @@ require 'mime/types'
 require 'openssl'
 require 'open-uri'
 
+if RUBY_VERSION < "1.9.0"
+  class String
+    def force_encoding(enc)
+      self
+    end
+end
+
 
 # This class provides a Paperclip plugin compliant interface for an "upload" file
 # where that uploaded file is actually coming from a URL.  This class will download
