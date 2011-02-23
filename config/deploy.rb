@@ -54,7 +54,7 @@ namespace :deploy do
 
   desc "run bundle install to install Bundle packaged gems"
   task :bundle_install, :roles => :app do
-    run "cd #{release_path} && sudo bundle install"
+    run "cd #{release_path} && sudo bundle install --deployment"
   end
 
   task :seed_db, :roles => :app do
