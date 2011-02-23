@@ -7,6 +7,7 @@ if RUBY_VERSION < "1.9.0"
     def force_encoding(enc)
       self
     end
+  end
 end
 
 
