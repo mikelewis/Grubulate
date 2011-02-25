@@ -19,6 +19,17 @@ describe Profile do
       @profile.recipes.length.should eq(0)
     end
 
+    it "should be able to add a profile image from a url" do
+      @profile.url_to_image("http://www.google.com/logos/2011/munkacsy11-hp.jpg", true)
+
+      @profile.avatar.url(:thumb).should match(/munkacsy11-hp\.png/)
+    end
+
+    it "should be able to add a profile image to that redirects" do
+      @profile.url_to_image("http://graph.facebook.com/munit/picture?type=large", true)
+      @profile.avatar.url(:thumb).should match(/_n.png/)
+    end
+
     context "Favorite Chefs" do
       before do
         @profile1 = Factory(:profile)
@@ -26,7 +37,6 @@ describe Profile do
       end
       it "should be able to add a favorite chef" do
         @profile.favorite_chefs.should eq([@profile1])
-
       end
 
       it "should be able to remove a favorite chef" do

@@ -2,11 +2,17 @@ Factory.define :user do |u|
   u.sequence(:email) { |n| "mike#{n}@awesome.com"}
   u.password "funnyguy1"
   u.password_confirmation {|u| u.password }
+  u.authentications {|authentications| [authentications.association(:authentication)]}
 end
 
 Factory.define :profile do |p|
   p.sequence(:username) { |n| "madmike#{n}"}
   p.user {|i| i.association(:user)}
+end
+
+Factory.define :authentication do |a|
+  a.provider "Facebook"
+  a.sequence(:uid){|n| "random#{n}"}
 end
 
 Factory.define :entree do |e|
