@@ -5,3 +5,4 @@ tmp/**/*
 *.swp
 public/system/avatars/*
 vendor/cache/*
+config/database.yml
